@@ -20,6 +20,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import { logout } from '../redux/User';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
 
 const drawerWidth = 240;
 
@@ -82,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DashboardLayout=(props)=>{
   const classes = useStyles();
+  const history = useHistory();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -92,6 +94,10 @@ const DashboardLayout=(props)=>{
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const onClickNavItem=(path)=>{
+    history.push(path);
+  }
 
   return (
     <div className={classes.root}>
@@ -133,24 +139,24 @@ const DashboardLayout=(props)=>{
         </div>
         <Divider />
         <List>
-            <ListItem button>
+            <ListItem button onClick={()=>onClickNavItem('/home')}>
               <ListItemIcon><DashboardIcon></DashboardIcon></ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItem>
 
-            <ListItem button>
-              <ListItemIcon><ListIcon></ListIcon></ListItemIcon>
-              <ListItemText primary="Item Types" />
-            </ListItem>
-
-            <ListItem button>
+            <ListItem button onClick={()=>onClickNavItem('/items')}>
               <ListItemIcon><ListIcon></ListIcon></ListItemIcon>
               <ListItemText primary="Items" />
             </ListItem>
 
-            <ListItem button>
+            <ListItem button onClick={()=>onClickNavItem('/orders')}>
               <ListItemIcon><ListIcon></ListIcon></ListItemIcon>
               <ListItemText primary="Orders" />
+            </ListItem>
+
+            <ListItem button onClick={()=>onClickNavItem('/reports')}>
+              <ListItemIcon><ListIcon></ListIcon></ListItemIcon>
+              <ListItemText primary="Reports" />
             </ListItem>
         </List>
         <Divider />

@@ -15,6 +15,11 @@ import NotFound from './pages/NotFound';
 import ResetPassword from './pages/ResetPassword';
 import Landing from './pages/Landing';
 import Home from './pages/Home';
+import Orders from './pages/Orders';
+import Items from './pages/Items';
+import Reports from './pages/Reports';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -38,6 +43,15 @@ function App() {
             <PrivateRoute path="/home" >
               <Home />
             </PrivateRoute>
+            <PrivateRoute path="/orders" >
+              <Orders />
+            </PrivateRoute>
+            <PrivateRoute path="/items" >
+              <Items />
+            </PrivateRoute>
+            <PrivateRoute path="/reports" >
+              <Reports />
+            </PrivateRoute>
             <Route to="/">
               <Landing />
             </Route>
@@ -45,6 +59,17 @@ function App() {
               <NotFound />
             </Route>
           </Switch>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
       </Router>
   );
 }
